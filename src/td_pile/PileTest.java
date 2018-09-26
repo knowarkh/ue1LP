@@ -1,5 +1,7 @@
 package td_pile;
 
+import java.io.IOException;
+
 public class PileTest {
 
     public static void main(String[] args) {
@@ -13,6 +15,56 @@ public class PileTest {
         testDepiler();
         System.out.println("---Test getTaille()---");
         testGetTaille();
+        System.out.println("---Test lirePile()---");
+        testLirePile();
+        System.out.println("---Test ecrirePile()---");
+        testEcrirePile();
+        System.out.println("---Test ecrireObject()---");
+        testEcrireObject();
+        System.out.println("---Test lireObject()---");
+        testLireObject();
+    }
+
+    private static void testEcrireObject() {
+        Pile<String> pile = new Pile<String>();
+        pile.empiler("binaire");
+        try {
+            pile.ecrireObject(
+                    "C:\\Users\\stuff\\eclipse-workspace\\UE-1_reutil\\src\\ws\\pile3.bin");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Test ok");
+    }
+
+    private static void testLireObject() {
+        Pile<String> pile = new Pile<String>();
+        try {
+            System.out.println(pile.lireObject(
+                    "C:\\Users\\stuff\\eclipse-workspace\\UE-1_reutil\\src\\ws\\pile3.bin")
+                    .getListStr());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Test ok");
+    }
+
+    private static void testLirePile() {
+        Pile<String> pile = new Pile<String>();
+        pile.lirePile(
+                "C:\\Users\\stuff\\eclipse-workspace\\UE-1_reutil\\src\\ws\\pile1.txt");
+        System.out.println(pile.getListStr());
+    }
+
+    private static void testEcrirePile() {
+        Pile<String> pile = new Pile<String>();
+        pile.empiler("hello\n");
+        pile.empiler("bonjour\n");
+        pile.empiler("hola\n");
+        pile.empiler("bonjorno\n");
+        pile.ecrirePile(
+                "C:\\Users\\stuff\\eclipse-workspace\\UE-1_reutil\\src\\ws\\pile2.txt");
+        System.out.println("Test ok");
     }
 
     private static void testGetTaille() {
